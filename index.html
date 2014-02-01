@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>ctrlr</title>
+
+  <link rel="stylesheet" href="content/css/bootstrap.min.css">
+  <link rel="stylesheet" href="content/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="content/css/app.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body ng-app>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div><!--/.navbar-collapse -->
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-content" ng-controller="SearchCtrl">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    ctrlr
+                </div>
+                <div class="panel-body">
+                    <form class="form-group" role="form" ng-submit="search()">
+                        <div class="form-group">
+                            <label for="searchString">Which stop would you like to subscribe to?</label>
+                            <input type="text" class="form-control" ng-model="searchText" placeholder="Search for stop">
+                        </div>
+                        <button type="submit" class="btn btn-default">Search</button>
+                        <span class="glyphicon glyphicon-download" ng-show="loading"></span>
+                    </form>
+                </div>
+            </div>
+            <div class="list-group">
+                <span ng-repeat="stop in stops">
+                    <a href="javascript:void(0)" class="list-group-item" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked($index)">
+                        {{stop.id}} {{stop.name}} - {{stop.district}}
+                    </a>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="line in stop.lines">
+                            {{line.transportation}}: {{line.lineName}}
+                        </li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+    </div> <!-- /container -->
+
+    <script src="vendor/jquery-2.0.3.min.js"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+    <script src="vendor/underscore-min.js"></script>    
+    <script src="vendor/moment.min.js"></script>    
+    <script src="vendor/angular.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCcdZ_uBv9RBTbDAXVdnI-lZ8QvnoyVzk&sensor=true"></script>
+    <script src="app/app.js"></script>
+
+</body>
+</html>
