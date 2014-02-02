@@ -7,6 +7,15 @@
     margin-top: 75px;
 }
 
-.panel-heading {
-    font-size: 3em;
+.status-content {
+    margin-top: 75px;
+
+}
+
+.status-content .temprature {
+    font-size: 4em;
+}
+
+.lightswitch .btn {
+    width: 100%
 }

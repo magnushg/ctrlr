@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="content/css/bootstrap.min.css">
   <link rel="stylesheet" href="content/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="content/css/app.css">
+  <script src="vendor/jquery-2.0.3.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -27,54 +28,70 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Project name</a>
+                <a class="navbar-brand" href="#">ctrlr</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <!--<li class="active"><a href="#">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact">Contact</a></li>-->
                 </ul>
             </div><!--/.navbar-collapse -->
         </div>
     </div>
 
-    <div class="container">
-        <div class="main-content" ng-controller="SearchCtrl">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    ctrlr
+    <div class="container" ng-controller="SearchCtrl">
+        <div class="row">
+            <div class="main-content col-md-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        subsrcibe
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-group" role="form" ng-submit="search()">
+                            <div class="form-group">
+                                <label for="searchString">Which stop would you like to subscribe to?</label>
+                                <input type="text" class="form-control" ng-model="searchText" placeholder="Search for stop">
+                            </div>
+                            <button type="submit" class="btn btn-default">Search</button>
+                            <span class="glyphicon glyphicon-download" ng-show="loading"></span>
+                        </form>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <form class="form-group" role="form" ng-submit="search()">
-                        <div class="form-group">
-                            <label for="searchString">Which stop would you like to subscribe to?</label>
-                            <input type="text" class="form-control" ng-model="searchText" placeholder="Search for stop">
-                        </div>
-                        <button type="submit" class="btn btn-default">Search</button>
-                        <span class="glyphicon glyphicon-download" ng-show="loading"></span>
-                    </form>
+                <div class="list-group">
+                    <span ng-repeat="stop in stops">
+                        <a href="javascript:void(0)" class="list-group-item" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked($index)">
+                            {{stop.id}} {{stop.name}} - {{stop.district}}
+                        </a>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="line in stop.lines">
+                                {{line.transportation}}: {{line.lineName}}
+                            </li>
+                        </ul>
+                    </span>
                 </div>
             </div>
-            <div class="list-group">
-                <span ng-repeat="stop in stops">
-                    <a href="javascript:void(0)" class="list-group-item" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked($index)">
-                        {{stop.id}} {{stop.name}} - {{stop.district}}
-                    </a>
-                    <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="line in stop.lines">
-                            {{line.transportation}}: {{line.lineName}}
-                        </li>
-                    </ul>
-                </span>
+            <div class="col-md-4">
+                <div class="panel panel-primary status-content">
+                    <div class="panel-heading">My home</div>
+                    <div class="panel-body">
+                        <span class="temprature">{{temprature}}&deg;C</span>
+                    </div>
+                </div>
+                <div class="panel panel-primary lightswitch">
+                    <div class="panel-heading">Lightswitch</div>
+                    <div class="panel-body">
+                        <button class="btn" ng-class="{'btn-success': lightToggle, 'btn-danger': !lightToggle}" ng-click="lighswitch()">Toggle light</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div> <!-- /container -->
 
-    <script src="vendor/jquery-2.0.3.min.js"></script>
+   
     <script src="vendor/bootstrap.min.js"></script>
-    <script src="vendor/underscore-min.js"></script>    
-    <script src="vendor/moment.min.js"></script>    
+    <script src="vendor/underscore-min.js"></script>
+    <script src="vendor/moment.min.js"></script>
     <script src="vendor/angular.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCcdZ_uBv9RBTbDAXVdnI-lZ8QvnoyVzk&sensor=true"></script>
     <script src="app/app.js"></script>

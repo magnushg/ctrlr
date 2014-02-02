@@ -28,12 +28,18 @@ function SearchCtrl($scope) {
        }
 
 
-
+    $scope.temprature = _.random(17, 25);
+    $scope.lightToggle = false;
     $scope.selectedIndex = 0;
-
+  
     $scope.itemClicked = function ($index) {
         $scope.selectedIndex = $index;
     };
+
+    $scope.lighswitch = function () {
+        $scope.lightToggle = !$scope.lightToggle;  
+        $.get('lightswitch/' + $scope.lightToggle);
+    }
 }
 
 function mapStops(stops) {
