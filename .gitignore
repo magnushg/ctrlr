@@ -18,3 +18,5 @@ WebEssentials-Settings.json
 *.suo
 *.sln
 *.njsproj
+
+.idea

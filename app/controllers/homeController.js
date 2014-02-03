@@ -1,16 +1,5 @@
 ﻿(function(app) {
-    var transportTypeMap = {};
-
-transportTypeMap[0] = 'Walking',
-transportTypeMap[1] = 'AirportBus',
-transportTypeMap[2] = 'Bus',
-transportTypeMap[4] = 'Bus',
-transportTypeMap[5] = 'Boat',
-transportTypeMap[6] = 'Train',
-transportTypeMap[7] = 'Tram',
-transportTypeMap[8] = 'Metro'
-
-
+   
 var homeController = function($scope, $http) {
     //$scope.stops = [];
     $scope.loading = false;
@@ -41,25 +30,26 @@ var homeController = function($scope, $http) {
 }
 
 function mapStops(stops) {
-   return _.chain(stops)
-            .filter(function (stop) {
-                return stop.Type === 0;             
-            })
-            .map(function(stop) {
-  			    return {  						
-                    id: stop.ID,
-                    name: stop.Name,
-                    district: stop.District,
-                    lines: _.map(stop.Lines, function(line) {
-                            return {
-                                lineId: line.LineID,
-                                lineName: line.LineName,
-                                transportationType: line.Transportation,
-                                transportation: transportTypeMap[line.Transportation]
-                            }
-                        })
-                }})
-            .value() 
+    return _.chain(stops)
+        .filter(function(stop) {
+            return stop.Type === 0;
+        })
+        .map(function(stop) {
+            return {
+                id: stop.ID,
+                name: stop.Name,
+                district: stop.District,
+                lines: _.map(stop.Lines, function(line) {
+                    return {
+                        lineId: line.LineID,
+                        lineName: line.LineName,
+                        transportationType: line.Transportation,
+                        transportation: line.Transportation
+                    };
+                })
+            }
+        })
+        .value();
 }
 
 app.controller("homeController", ['$scope', '$http', homeController]);

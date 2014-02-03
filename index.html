@@ -65,7 +65,7 @@
                         </a>
                         <ul class="list-group">
                             <li class="list-group-item" ng-repeat="line in stop.lines">
-                                {{line.transportation}}: {{line.lineName}}
+                                {{line.transportation | transportType}}: {{line.lineName}}
                             </li>
                         </ul>
                     </span>
@@ -96,5 +96,6 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCcdZ_uBv9RBTbDAXVdnI-lZ8QvnoyVzk&sensor=true"></script>
     <script src="app/ctrlrApp.js"></script>
     <script src="app/controllers/homeController.js"></script>
+    <script src="app/filters/transportType.js"></script>
 </body>
 </html>
