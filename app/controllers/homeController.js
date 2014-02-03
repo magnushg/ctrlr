@@ -1,4 +1,5 @@
-var transportTypeMap = {};
+﻿(function(app) {
+    var transportTypeMap = {};
 
 transportTypeMap[0] = 'Walking',
 transportTypeMap[1] = 'AirportBus',
@@ -9,22 +10,19 @@ transportTypeMap[6] = 'Train',
 transportTypeMap[7] = 'Tram',
 transportTypeMap[8] = 'Metro'
 
-function SearchCtrl($scope) {
+
+var homeController = function($scope, $http) {
     //$scope.stops = [];
     $scope.loading = false;
     $scope.search = function() {
         $scope.selectedIndex = 0;
         $scope.loading = true;
-        var url = 'http://reis.trafikanten.no/ReisRest/Place/Autocomplete/' + $scope.searchText + '?linesAndCoordinates=true'
-        $.ajax({
-  			    dataType: "jsonp",
-  			    url: url,  			
-  			    success: function(data) {
-  				    $scope.stops = mapStops(data);
+        var url = 'http://reis.trafikanten.no/ReisRest/Place/Autocomplete/' + $scope.searchText + '?linesAndCoordinates=true&callback=JSON_CALLBACK'
+        $http.jsonp(url).then(function(response) {
+  				    $scope.stops = mapStops(response.data);
                     console.log($scope.stops);
-                    $scope.loading = false;
-                    $scope.$apply();                    
-  			    }});
+                    $scope.loading = false;                    
+                    });
        }
 
 
@@ -38,7 +36,7 @@ function SearchCtrl($scope) {
 
     $scope.lighswitch = function () {
         $scope.lightToggle = !$scope.lightToggle;  
-        $.get('lightswitch/' + $scope.lightToggle);
+        $http.get('lightswitch/' + $scope.lightToggle);
     }
 }
 
@@ -64,14 +62,7 @@ function mapStops(stops) {
             .value() 
 }
 
-var map;
-function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(60.3920969, 5.32812829999999),
-          zoom: 12,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
-      }
+app.controller("homeController", ['$scope', '$http', homeController]);
+    
+}(angular.module("ctrlrApp")))
 

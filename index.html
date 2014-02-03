@@ -19,7 +19,7 @@
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
   </head>
-<body ng-app>
+<body ng-app="ctrlrApp" ng-cloak>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <div class="container" ng-controller="SearchCtrl">
+    <div class="container" ng-controller="homeController">
         <div class="row">
             <div class="main-content col-md-8">
                 <div class="panel panel-primary">
@@ -88,13 +88,13 @@
         </div>
     </div> <!-- /container -->
 
-   
+
     <script src="vendor/bootstrap.min.js"></script>
     <script src="vendor/underscore-min.js"></script>
     <script src="vendor/moment.min.js"></script>
     <script src="vendor/angular.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCcdZ_uBv9RBTbDAXVdnI-lZ8QvnoyVzk&sensor=true"></script>
-    <script src="app/app.js"></script>
-
+    <script src="app/ctrlrApp.js"></script>
+    <script src="app/controllers/homeController.js"></script>
 </body>
 </html>
