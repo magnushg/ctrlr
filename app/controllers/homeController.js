@@ -1,33 +1,47 @@
 ﻿(function(app) {
-   
-var homeController = function($scope, $http) {
-    //$scope.stops = [];
-    $scope.loading = false;
-    $scope.search = function() {
+
+    var homeController = function($scope, $http) {
+        //$scope.stops = [];
+        $scope.loading = false;
+        $scope.search = function() {
+            $scope.selectedIndex = 0;
+            $scope.loading = true;
+            var url = 'http://reis.trafikanten.no/ReisRest/Place/Autocomplete/' + $scope.searchText + '?linesAndCoordinates=true&callback=JSON_CALLBACK'
+            $http.jsonp(url).then(function(response) {
+                $scope.stops = mapStops(response.data);
+                console.log($scope.stops);
+                $scope.loading = false;
+            });
+        };
+
+
+        $scope.temprature = _.random(17, 25);
+        $scope.lightToggle = false;
         $scope.selectedIndex = 0;
-        $scope.loading = true;
-        var url = 'http://reis.trafikanten.no/ReisRest/Place/Autocomplete/' + $scope.searchText + '?linesAndCoordinates=true&callback=JSON_CALLBACK'
-        $http.jsonp(url).then(function(response) {
-  				    $scope.stops = mapStops(response.data);
-                    console.log($scope.stops);
-                    $scope.loading = false;                    
-                    });
-       }
 
+        $scope.itemClicked = function($index) {
+            $scope.selectedIndex = $index;
+        };
 
-    $scope.temprature = _.random(17, 25);
-    $scope.lightToggle = false;
-    $scope.selectedIndex = 0;
-  
-    $scope.itemClicked = function ($index) {
-        $scope.selectedIndex = $index;
+        $scope.lighswitch = function() {
+            $scope.lightToggle = !$scope.lightToggle;
+            $http.get('lightswitch/' + $scope.lightToggle);
+        };
+
+         $scope.getLocation = function(val) {
+            return $http.jsonp('http://reis.trafikanten.no/ReisRest/Place/Autocomplete/' + val, {
+              params: {
+                callback: 'JSON_CALLBACK',
+               }
+            }).then(function(res) {
+                return mapStops(res.data);
+            });
+        };
+
+        $scope.stopSelected = function($item) {
+            var a = $item;
+        };
     };
-
-    $scope.lighswitch = function () {
-        $scope.lightToggle = !$scope.lightToggle;  
-        $http.get('lightswitch/' + $scope.lightToggle);
-    }
-}
 
 function mapStops(stops) {
     return _.chain(stops)
@@ -39,15 +53,15 @@ function mapStops(stops) {
                 id: stop.ID,
                 name: stop.Name,
                 district: stop.District,
-                lines: _.map(stop.Lines, function(line) {
-                    return {
-                        lineId: line.LineID,
-                        lineName: line.LineName,
-                        transportationType: line.Transportation,
-                        transportation: line.Transportation
-                    };
-                })
-            }
+                //lines: _.map(stop.Lines, function(line) {
+                //    return {
+                //        lineId: line.LineID,
+                //        lineName: line.LineName,
+                //        transportationType: line.Transportation,
+                //        transportation: line.Transportation
+                //    };
+                //})
+            };
         })
         .value();
 }

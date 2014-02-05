@@ -1,5 +1,5 @@
 (function () {
     
-    angular.module("ctrlrApp", []);
+    angular.module("ctrlrApp", ['ui.bootstrap']);
 
 }());
