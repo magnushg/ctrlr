@@ -1,19 +1,7 @@
 ﻿(function(app) {
 
     var homeController = function($scope, $http) {
-        //$scope.stops = [];
         $scope.loading = false;
-        $scope.search = function() {
-            $scope.selectedIndex = 0;
-            $scope.loading = true;
-            var url = 'http://reis.trafikanten.no/ReisRest/Place/Autocomplete/' + $scope.searchText + '?linesAndCoordinates=true&callback=JSON_CALLBACK'
-            $http.jsonp(url).then(function(response) {
-                $scope.stops = mapStops(response.data);
-                console.log($scope.stops);
-                $scope.loading = false;
-            });
-        };
-
 
         $scope.temprature = _.random(17, 25);
         $scope.lightToggle = false;
@@ -31,7 +19,7 @@
          $scope.getLocation = function(val) {
             return $http.jsonp('http://reis.trafikanten.no/ReisRest/Place/Autocomplete/' + val, {
               params: {
-                callback: 'JSON_CALLBACK',
+                callback: 'JSON_CALLBACK'
                }
             }).then(function(res) {
                 return mapStops(res.data);
@@ -39,9 +27,43 @@
         };
 
         $scope.stopSelected = function($item) {
-            var a = $item;
+            return $http.jsonp('http://reis.trafikanten.no/ReisRest/RealTime/GetRealTimeData/' + $item.id, {
+                params: {
+                    callback: 'JSON_CALLBACK'
+                }})
+                .then(function(departures) {
+                    if(departures.data.length > 0 ) {
+                        $scope.departuresHeading = 'Real time departures';
+                        $scope.departures = mapDepartures(departures);
+                    }
+                    else {
+                        $scope.departuresHeading = 'No Real time data';
+                        $scope.departures = {};
+                    }
+                });
         };
     };
+
+function mapDepartures(departures) {
+    return _.map(departures.data, function(departure) {
+        return {
+            name: departure.PublishedLineName,
+            destination: departure.DestinationDisplay,
+            expectedArrival: calculateExpectedTimeString(departure.ExpectedArrivalTime),
+            vehicleMode: departure.VehicleMode
+        }
+    });
+}
+
+function calculateExpectedTimeString(actualTime) {
+    var diffFromNow = moment(actualTime).diff(moment(), 'minutes');
+
+    if(diffFromNow === 0) {
+        return 'Nå'
+    }
+
+    return diffFromNow > 10 ? moment(actualTime).format() : diffFromNow + ' min';
+}
 
 function mapStops(stops) {
     return _.chain(stops)
@@ -52,15 +74,7 @@ function mapStops(stops) {
             return {
                 id: stop.ID,
                 name: stop.Name,
-                district: stop.District,
-                //lines: _.map(stop.Lines, function(line) {
-                //    return {
-                //        lineId: line.LineID,
-                //        lineName: line.LineName,
-                //        transportationType: line.Transportation,
-                //        transportation: line.Transportation
-                //    };
-                //})
+                district: stop.District
             };
         })
         .value();

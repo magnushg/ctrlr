@@ -55,18 +55,12 @@
                         </form>
                     </div>
                 </div>
-                <div class="list-group">
-                    <span ng-repeat="stop in stops">
-                        <a href="javascript:void(0)" class="list-group-item" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked($index)">
-                            {{stop.id}} {{stop.name}} - {{stop.district}}
-                        </a>
-                        <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="line in stop.lines">
-                                {{line.transportation | transportType}}: {{line.lineName}}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <h3>{{departuresHeading}}</h3>
+               <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="departure in departures">
+                        <span>{{departure.vehicleMode | transportType}}: {{departure.name}} {{departure.destination}}</span><span class="pull-right">{{departure.expectedArrival | date:'HH:mm'}}</span>
+                    </li>
+               </ul>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-primary status-content">

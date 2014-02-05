@@ -1,14 +1,11 @@
 ﻿(function(app) {
      var transportTypeMap = {};
 
-    transportTypeMap[0] = 'Walking';
-    transportTypeMap[1] = 'AirportBus';
-    transportTypeMap[2] = 'Bus';
-    transportTypeMap[4] = 'Bus';
-    transportTypeMap[5] = 'Boat';
-    transportTypeMap[6] = 'Train';
-    transportTypeMap[7] = 'Tram';
-    transportTypeMap[8] = 'Metro';
+    transportTypeMap[0] = 'Bus';
+    transportTypeMap[1] = 'Ferry';
+    transportTypeMap[2] = 'Train';
+    transportTypeMap[3] = 'Tram';
+    transportTypeMap[4] = 'Metro';
     
     var transportType = function() {
         return function(input) {
