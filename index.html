@@ -67,13 +67,15 @@
                     <div class="panel-heading">My home</div>
                     <div class="panel-body">
                         <span class="temprature">{{temprature.value}}&deg;C</span>
-                        <pre>last updated: {{temprature.timestamp | date: 'HH:mm'}}</pre>
+                        <pre>last updated: {{temprature.timestamp | date: 'HH:mm:ss'}}</pre>
                     </div>
                 </div>
                 <div class="panel panel-primary lightswitch">
                     <div class="panel-heading">Lightswitch</div>
                     <div class="panel-body">
-                        <button class="btn" ng-class="{'btn-success': lightToggle, 'btn-danger': !lightToggle}" ng-click="lightswitch()">Toggle light</button>
+                        <button type="button" class="btn btn-success" ng-model="lightToggle" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
+                            Lightswitch
+                        </button>
                     </div>
                 </div>
             </div>
