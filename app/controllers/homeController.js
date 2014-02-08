@@ -1,8 +1,8 @@
 ﻿(function(app) {
 
     var homeController = function($scope, $http, $firebase) {
-        var lightswitchRef = new Firebase("https://blazing-fire-9257.firebaseio.com/lightswitch");
-        $scope.lightswitch = $firebase(lightswitchRef);
+        var lightswitchRef = new Firebase("https://blazing-fire-9257.firebaseio.com/automatr");
+        $scope.lightswitchToggle = $firebase(lightswitchRef);
         $scope.temprature = _.random(17, 25);
         $scope.lightToggle = false;
         $scope.selectedIndex = 0;
@@ -11,8 +11,10 @@
             $scope.selectedIndex = $index;
         };
 
-        $scope.lighswitch = function() {            
-            lightswitchRef.update(!$scope.lighswitch);
+        $scope.lightswitch = function() {            
+            $scope.lightToggle = !$scope.lightToggle;
+            lightswitchRef.update({lightswitch: $scope.lightToggle});
+            //$scope.lightswitchToggle.$add({lightswitch: $scope.lightToggle});
         };
 
          $scope.getLocation = function(val) {
