@@ -2,11 +2,12 @@
 
     var homeController = function($scope, $http, $firebase) {
         var lightswitchRef = new Firebase("https://blazing-fire-9257.firebaseio.com/automatr/lightswitch");
-        var tempratureRef = new Firebase("https://blazing-fire-9257.firebaseio.com/automatr/temprature")
+        var tempratureRef = new Firebase("https://blazing-fire-9257.firebaseio.com/automatr/temprature");
+        var brightnessRef = new Firebase("https://blazing-fire-9257.firebaseio.com/automatr/brightness");
         $scope.temprature = $firebase(tempratureRef);
+        $scope.brightness = $firebase(brightnessRef);
         $scope.lightswitchToggle = $firebase(lightswitchRef);
         $scope.lightswitchToggle.$bind($scope, 'lightToggle');
-        //$scope.temprature = _.random(17, 25);
         $scope.selectedIndex = 0;
 
         $scope.itemClicked = function($index) {

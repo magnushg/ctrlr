@@ -9,11 +9,14 @@
 
 .status-content {
     margin-top: 75px;
-
 }
 
 .status-content .temprature {
     font-size: 4em;
+}
+
+.brightness {
+	font-size: 4em;
 }
 
 .lightswitch .btn {

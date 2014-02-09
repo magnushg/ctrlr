@@ -64,14 +64,21 @@
             </div>
             <div class="col-md-4">
                 <div class="panel panel-primary status-content">
-                    <div class="panel-heading">My home</div>
+                    <div class="panel-heading"><span class="glyphicon glyphicon-dashboard pull-right"></span>Temprature</div>
                     <div class="panel-body">
                         <span class="temprature">{{temprature.value}}&deg;C</span>
-                        <pre>last updated: {{temprature.timestamp | date: 'HH:mm:ss'}}</pre>
+                        <pre>last updated: {{temprature.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
+                    </div>
+                </div>
+                 <div class="panel panel-primary">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-adjust pull-right"></span>Brightness</div>
+                    <div class="panel-body">                        
+                        <span class="brightness">{{brightness.value}} / 1024</span>
+                        <pre>last updated: {{brightness.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
                     </div>
                 </div>
                 <div class="panel panel-primary lightswitch">
-                    <div class="panel-heading">Lightswitch</div>
+                    <div class="panel-heading"><span class="glyphicon glyphicon-off pull-right"></span>Lightswitch</div>
                     <div class="panel-body">
                         <button type="button" class="btn btn-success" ng-model="lightToggle" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
                             Lightswitch
