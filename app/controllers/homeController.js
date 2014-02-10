@@ -1,6 +1,6 @@
 ﻿(function(app) {
 
-    var homeController = function($scope, $http, $firebase) {
+    var homeController = function($scope, $http, $firebase, travelService) {
         var lightswitchRef = new Firebase("https://blazing-fire-9257.firebaseio.com/automatr/lightswitch");
         var tempratureRef = new Firebase("https://blazing-fire-9257.firebaseio.com/automatr/temprature");
         var brightnessRef = new Firebase("https://blazing-fire-9257.firebaseio.com/automatr/brightness");
@@ -21,24 +21,16 @@
         };
 
          $scope.getLocation = function(val) {
-            return $http.jsonp('http://reis.trafikanten.no/ReisRest/Place/Autocomplete/' + val, {
-              params: {
-                callback: 'JSON_CALLBACK'
-               }
-            }).then(function(res) {
-                return mapStops(res.data);
+            return travelService.getLocation(val).then(function(res) {
+                return travelService.mapStops(res.data);
             });
         };
 
         $scope.stopSelected = function($item) {
-            return $http.jsonp('http://reis.trafikanten.no/ReisRest/RealTime/GetRealTimeData/' + $item.id, {
-                params: {
-                    callback: 'JSON_CALLBACK'
-                }})
-                .then(function(departures) {
+            return travelService.getRealtimeData($item.id).then(function(departures) {
                     if(departures.data.length > 0 ) {
                         $scope.departuresHeading = 'Real time departures';
-                        $scope.departures = mapDepartures(departures);
+                        $scope.departures = travelService.mapDepartures(departures);
                     }
                     else {
                         $scope.departuresHeading = 'No Real time data';
@@ -48,16 +40,7 @@
         };
     };
 
-function mapDepartures(departures) {
-    return _.map(departures.data, function(departure) {
-        return {
-            name: departure.PublishedLineName,
-            destination: departure.DestinationDisplay,
-            expectedArrival: calculateExpectedTimeString(departure.ExpectedArrivalTime),
-            vehicleMode: departure.VehicleMode
-        }
-    });
-}
+
 
 function calculateExpectedTimeString(actualTime) {
     var diffFromNow = moment(actualTime).diff(moment(), 'minutes');
@@ -69,22 +52,7 @@ function calculateExpectedTimeString(actualTime) {
     return diffFromNow > 10 ? moment(actualTime).format() : diffFromNow + ' min';
 }
 
-function mapStops(stops) {
-    return _.chain(stops)
-        .filter(function(stop) {
-            return stop.Type === 0;
-        })
-        .map(function(stop) {
-            return {
-                id: stop.ID,
-                name: stop.Name,
-                district: stop.District
-            };
-        })
-        .value();
-}
-
-app.controller("homeController", ['$scope', '$http', '$firebase', homeController]);
+app.controller("homeController", ['$scope', '$http', '$firebase', 'travelService', homeController]);
     
 }(angular.module("ctrlrApp")))
 
