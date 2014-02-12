@@ -10,6 +10,7 @@
 
   <link rel="stylesheet" href="content/css/bootstrap.min.css">
   <link rel="stylesheet" href="content/css/bootstrap-theme.min.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="content/css/app.css">
   <script src="vendor/jquery-2.0.3.min.js"></script>
 
@@ -51,7 +52,7 @@
                         <form class="form-group" role="form" ng-submit="search()">
                             <pre>Model: {{asyncSelected | json}}</pre>
                             <input type="text" ng-model="asyncSelected" placeholder="Search for public transportation stop" typeahead="stop as stop.name for stop in getLocation($viewValue) | filter:$viewValue" typeahead-loading="loadingLocations" typeahead-wait-ms="200" typeahead-on-select="stopSelected($item)" class="form-control">
-                            <span style="display:inline" ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></span>
+                            <span style="display:inline" ng-show="loadingLocations" class="fa fa-spinner fa-spin"></span>
                         </form>
                     </div>
                 </div>
@@ -62,23 +63,23 @@
                     </li>
                </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 side-content">
                 <div class="panel panel-primary status-content">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-dashboard pull-right"></span>Temprature</div>
+                    <div class="panel-heading"><span class="fa fa-plus pull-right"></span><span class="fa fa-minus pull-right"></span>Temprature</div>
                     <div class="panel-body">
                         <span class="temprature">{{temprature.value}}&deg;C</span>
                         <pre>last updated: {{temprature.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
                     </div>
                 </div>
                  <div class="panel panel-primary">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-adjust pull-right"></span>Brightness</div>
+                    <div class="panel-heading"><span class="fa fa-sun-o pull-right"></span>Brightness</div>
                     <div class="panel-body">                        
                         <span class="brightness">{{brightness.value}} / 1023</span>
                         <pre>last updated: {{brightness.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
                     </div>
                 </div>
                 <div class="panel panel-primary lightswitch">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-off pull-right"></span>Lightswitch</div>
+                    <div class="panel-heading"><span class="fa fa-power-off pull-right"></span>Lightswitch</div>
                     <div class="panel-body">
                         <button type="button" class="btn btn-success" ng-model="lightToggle" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
                             Lightswitch

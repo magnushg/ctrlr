@@ -7,16 +7,24 @@
     margin-top: 75px;
 }
 
+.main-content .panel {
+	font-size: 2em;
+}
+
+.side-content .panel {
+	font-size: 2em;
+}
+
 .status-content {
     margin-top: 75px;
 }
 
 .status-content .temprature {
-    font-size: 4em;
+    font-size: 2em;
 }
 
 .brightness {
-	font-size: 4em;
+	font-size: 2em;
 }
 
 .lightswitch .btn {
