@@ -57,11 +57,11 @@
                     </div>
                 </div>
                 <h3>{{departuresHeading}}</h3>
-               <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="departure in departures">
+               <div class="list-group">
+                    <a href="#" class="list-group-item" ng-repeat="departure in departures" ng-class="{active: $index==selectedDeparture}" ng-click="selectDeparture($index, departure)">
                         <span>{{departure.vehicleMode | transportType}}: {{departure.name}} {{departure.destination}}</span><span class="pull-right">{{departure.expectedArrival | date:'HH:mm'}}</span>
-                    </li>
-               </ul>
+                    </a>
+               </div>      
             </div>
             <div class="col-md-4 side-content">
                 <div class="panel panel-primary status-content">
@@ -104,5 +104,6 @@
     <script src="app/controllers/homeController.js"></script>
     <script src="app/filters/transportType.js"></script>
     <script src="app/services/travelService.js"></script>
+    <script src="app/services/automatrService.js"></script>
 </body>
 </html>

@@ -21,6 +21,8 @@
                 return {
                     name: departure.PublishedLineName,
                     destination: departure.DestinationDisplay,
+                    destinationRef: departure.DestinationRef,
+                    direction: departure.DirectionName,
                     expectedArrival: calculateExpectedTimeString(departure.ExpectedArrivalTime),
                     vehicleMode: departure.VehicleMode
                 }
