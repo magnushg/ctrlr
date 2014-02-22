@@ -1,5 +1,5 @@
 (function () {
     
-    angular.module("ctrlrApp", ['ui.bootstrap', 'firebase']);
+    angular.module("ctrlrApp", ['ui.bootstrap', 'firebase', 'highcharts-ng']);
 
 }());

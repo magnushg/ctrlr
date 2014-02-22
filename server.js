@@ -10,8 +10,6 @@ app.use("/vendor", express.static(__dirname + "/vendor"));
 app.use("/content", express.static(__dirname + "/content"));
 app.use("/template", express.static(__dirname + "/template"));
 
-var lightswitch = new Firebase('https://blazing-fire-9257.firebaseio.com/lightswitch');
-	
 app.get('/', function(req, res) {
 	res.sendfile('index.html');
 });
