@@ -23,10 +23,22 @@
         };
 
         $scope.environmentLog.$on('loaded', function(data) {
-            $scope.envLog = _.map(data, function(item) {
+            $scope.tempLog = _.chain(data)
+                .filter(function (item) {
+                    return item.temprature !== undefined;
+                })
+                .map(function (item) {
                 return item.temprature;
-            });
-            $scope.createChartConfig($scope.envLog);
+            }).value();
+            $scope.brightnessLog = _.chain(data)
+                .filter(function (item) {
+                    return item.brightness !== undefined;
+                })
+                .map(function (item) {
+                return item.brightness;
+            }).value();
+            $scope.createTempChartConfig($scope.tempLog);
+            $scope.createBrightnessChartConfig($scope.brightnessLog);
         });
 
         $scope.stopSelected = function($item) {
@@ -43,15 +55,16 @@
                 });
         };
 
-        $scope.createChartConfig = function(envLog) {
-            $scope.chartConfig = {
+        $scope.createTempChartConfig = function(tempLog) {
+            $scope.tempratureChartConfig = {
             options: {
                 chart: {
                     type: 'spline'
                 }
             },
             series: [{
-                data: _.map(envLog, function(logItem) {
+                name: "temprature",
+                data: _.map(tempLog, function(logItem) {
                     return parseFloat(logItem.value);
                 })
             }],
@@ -60,7 +73,29 @@
             },
 
             loading: false
+            }
         }
+
+        $scope.createBrightnessChartConfig = function(brightnessLog) {
+            $scope.brightnessChartConfig = {
+            options: {
+                chart: {
+                    type: 'spline'
+                }
+            },
+            series: [{
+                name: "brightness",
+                color: '#910000',
+                data: _.map(brightnessLog, function(logItem) {
+                    return parseFloat(logItem.value);
+                })
+            }],
+            title: {
+                text: 'Brightness log'
+            },
+
+            loading: false
+            }
         }
 
     };

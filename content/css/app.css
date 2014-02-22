@@ -15,15 +15,15 @@
 	font-size: 2em;
 }
 
-.status-content {
+.side-content {
     margin-top: 75px;
 }
 
-.status-content .temprature {
-    font-size: 2em;
+.brightness {
+	font-size: 2em;
 }
 
-.brightness {
+.temprature {
 	font-size: 2em;
 }
 

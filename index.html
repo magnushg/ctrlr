@@ -40,31 +40,10 @@
             </div><!--/.navbar-collapse -->
         </div>
     </div>
-
     <div class="container" ng-controller="homeController">
         <div class="row">
-            <div class="main-content col-md-8">
+           <div class="col-md-6 main-content">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        Subsrcibe
-                    </div>
-                    <div class="panel-body">
-                        <form class="form-group" role="form" ng-submit="search()">
-                            <pre>Model: {{asyncSelected | json}}</pre>
-                            <input type="text" ng-model="asyncSelected" placeholder="Search for public transportation stop" typeahead="stop as stop.name for stop in getLocation($viewValue) | filter:$viewValue" typeahead-loading="loadingLocations" typeahead-wait-ms="200" typeahead-on-select="stopSelected($item)" class="form-control">
-                            <span style="display:inline" ng-show="loadingLocations" class="fa fa-spinner fa-spin"></span>
-                        </form>
-                    </div>
-                </div>
-                <h3>{{departuresHeading}}</h3>
-               <div class="list-group">
-                    <a href="#" class="list-group-item" ng-repeat="departure in departures" ng-class="{active: $index==selectedDeparture}" ng-click="selectDeparture($index, departure)">
-                        <span>{{departure.vehicleMode | transportType}}: {{departure.name}} {{departure.destination}}</span><span class="pull-right">{{departure.expectedArrival | date:'HH:mm'}}</span>
-                    </a>
-               </div>      
-            </div>
-            <div class="col-md-4 side-content">
-                <div class="panel panel-primary status-content">
                     <div class="panel-heading"><span class="fa fa-plus pull-right"></span><span class="fa fa-minus pull-right"></span>Temprature</div>
                     <div class="panel-body">
                         <span class="temprature">{{temprature.value}}&deg;C</span>
@@ -87,9 +66,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <highchart id="tempChart" config="chartConfig"></highchart>          
-            </div>
+             <div class="side-content col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Subsrcibe
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-group" role="form" ng-submit="search()">
+                            <pre>Model: {{asyncSelected | json}}</pre>
+                            <input type="text" ng-model="asyncSelected" placeholder="Search for public transportation stop" typeahead="stop as stop.name for stop in getLocation($viewValue) | filter:$viewValue" typeahead-loading="loadingLocations" typeahead-wait-ms="200" typeahead-on-select="stopSelected($item)" class="form-control">
+                            <span style="display:inline" ng-show="loadingLocations" class="fa fa-spinner fa-spin"></span>
+                        </form>
+                    </div>
+                </div>
+                <h3>{{departuresHeading}}</h3>
+               <div class="list-group">
+                    <a href="#" class="list-group-item" ng-repeat="departure in departures" ng-class="{active: $index==selectedDeparture}" ng-click="selectDeparture($index, departure)">
+                        <span>{{departure.vehicleMode | transportType}}: {{departure.name}} {{departure.destination}}</span><span class="pull-right">{{departure.expectedArrival | date:'HH:mm'}}</span>
+                    </a>
+               </div> 
+               <highchart id="tempChart" config="tempratureChartConfig"></highchart>
+               <highchart id="tempChart" config="brightnessChartConfig"></highchart>     
+            </div>           
         </div>
       
     </div> <!-- /container -->
