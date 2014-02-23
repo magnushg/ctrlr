@@ -51,9 +51,19 @@
                 .map(function (item) {
                 return item.brightness;
             }).value();
-            $scope.tempratureChartConfig = $scope.createEnvironmentChartConfig('Temprature', 'spline', $scope.tempLog, '#2f7ed8');
+            $scope.tempratureChartConfig = $scope.createEnvironmentChartConfig('Temperature', 'spline', $scope.tempLog, '#2f7ed8');
             $scope.brightnessChartConfig = $scope.createEnvironmentChartConfig('Brightness', 'spline', $scope.brightnessLog, '#910000');
-        });
+            
+            $scope.environmentLog.$on('child_added', function (child) {
+                var snapshot = child.snapshot.value;
+                if(snapshot.temprature) {
+                    $scope.tempratureChartConfig.series[0].data.push({x: snapshot.temprature.timestamp, y: parseFloat(snapshot.temprature.value)});
+                }
+                if(snapshot.brightness) {
+                    $scope.brightnessChartConfig.series[0].data.push({x: snapshot.brightness.timestamp, y: snapshot.brightness.value});
+                }
+            });
+        });       
        
         $scope.createEnvironmentChartConfig = function(name, chartType, tempLog, color) {
             return {
