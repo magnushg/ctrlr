@@ -22,26 +22,7 @@
             });
         };
 
-        $scope.environmentLog.$on('loaded', function(data) {
-            $scope.tempLog = _.chain(data)
-                .filter(function (item) {
-                    return item.temprature !== undefined;
-                })
-                .map(function (item) {
-                return item.temprature;
-            }).value();
-            $scope.brightnessLog = _.chain(data)
-                .filter(function (item) {
-                    return item.brightness !== undefined;
-                })
-                .map(function (item) {
-                return item.brightness;
-            }).value();
-            $scope.createTempChartConfig($scope.tempLog);
-            $scope.createBrightnessChartConfig($scope.brightnessLog);
-        });
-
-        $scope.stopSelected = function($item) {
+         $scope.stopSelected = function($item) {
             $scope.selectedStop = $item;
             return travelService.getRealtimeData($item.id).then(function(departures) {
                     if(departures.data.length > 0 ) {
@@ -55,49 +36,50 @@
                 });
         };
 
-        $scope.createTempChartConfig = function(tempLog) {
-            $scope.tempratureChartConfig = {
-            options: {
-                chart: {
-                    type: 'spline'
-                }
-            },
-            series: [{
-                name: "temprature",
-                data: _.map(tempLog, function(logItem) {
-                    return parseFloat(logItem.value);
+        $scope.environmentLog.$on('loaded', function(data) {
+            $scope.tempLog = _.chain(data)
+                .filter(function (item) {
+                    return item.temprature !== undefined;
                 })
-            }],
-            title: {
-                text: 'Temprature log'
-            },
-
-            loading: false
-            }
-        }
-
-        $scope.createBrightnessChartConfig = function(brightnessLog) {
-            $scope.brightnessChartConfig = {
-            options: {
-                chart: {
-                    type: 'spline'
-                }
-            },
-            series: [{
-                name: "brightness",
-                color: '#910000',
-                data: _.map(brightnessLog, function(logItem) {
-                    return parseFloat(logItem.value);
+                .map(function (item) {
+                return item.temprature;
+            }).value();
+            $scope.brightnessLog = _.chain(data)
+                .filter(function (item) {
+                    return item.brightness !== undefined 
                 })
-            }],
-            title: {
-                text: 'Brightness log'
-            },
-
-            loading: false
+                .map(function (item) {
+                return item.brightness;
+            }).value();
+            $scope.tempratureChartConfig = $scope.createEnvironmentChartConfig('Temprature', 'spline', $scope.tempLog, '#2f7ed8');
+            $scope.brightnessChartConfig = $scope.createEnvironmentChartConfig('Brightness', 'spline', $scope.brightnessLog, '#910000');
+        });
+       
+        $scope.createEnvironmentChartConfig = function(name, chartType, tempLog, color) {
+            return {
+                options: {
+                    chart: {
+                        zoomType: 'x'
+                    }
+                },
+                series: [{
+                    name: name,
+                    data: _.map(tempLog, function (logItem) {
+                        return {x: logItem.timestamp, y: parseFloat(logItem.value)};
+                    }),
+                    pointStart: _.first(tempLog).timestamp,
+                    type: chartType,
+                    color: color
+                }],
+                title: {
+                    text: name + ' log'
+                },
+                xAxis: {
+                    type: 'datetime'               
+                },
+                loading: false
+                }
             }
-        }
-
     };
 
 app.controller("homeController", ['$scope', '$http', 'travelService', 'automatrService', homeController]);
