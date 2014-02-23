@@ -5,11 +5,13 @@
         $scope.brightness = automatrService.getBrightness();
         $scope.lightswitchToggle = automatrService.lightswitch();
         $scope.environmentLog = automatrService.environmentLog();
+        $scope.monitoredStop = automatrService.monitoredStop();
         $scope.lightswitchToggle.$bind($scope, 'lightToggle');
         $scope.selectedDeparture = -1;
 
         $scope.selectDeparture = function($index, $item) {
             $scope.selectedDeparture = $index;
+            $scope.monitoredStop.$set({stop: {destinationRef: $item.destinationRef, destination: $item.destination, name: $item.name, direction: $item.direction}});
         };
 
         $scope.lightswitch = function() {            

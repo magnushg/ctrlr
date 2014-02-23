@@ -6,7 +6,8 @@
         var lightswitchRef = new Firebase("https://automatr.firebaseio.com/lightswitch");
         var tempratureRef = new Firebase("https://automatr.firebaseio.com/temprature");
         var brightnessRef = new Firebase("https://automatr.firebaseio.com/brightness");
-        var logRef = new Firebase("https://automatr.firebaseio.com/environmentLog")
+        var logRef = new Firebase("https://automatr.firebaseio.com/environmentLog");
+        var monitoredStopRef = new Firebase("https://automatr.firebaseio.com/monitoredStop");
         
         automatrFactory.getTemprature = function () {
         	return $firebase(tempratureRef);
@@ -22,7 +23,12 @@
 
         automatrFactory.environmentLog = function () {
         	return $firebase(logRef);
+        };
+
+        automatrFactory.monitoredStop = function () {
+        	return $firebase(monitoredStopRef);
         }
+
 		return automatrFactory
     };
 
