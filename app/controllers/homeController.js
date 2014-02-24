@@ -1,6 +1,6 @@
 (function(app) {
 
-    var homeController = function($scope, $http, travelService, automatrService) {       
+    var homeController = function($scope, $http, travelService, automatrService, chartService) {       
         $scope.temprature = automatrService.getTemprature();
         $scope.brightness = automatrService.getBrightness();
         $scope.lightswitchToggle = automatrService.lightswitch();
@@ -55,8 +55,8 @@
                 .map(function (item) {
                 return item.brightness;
             }).value();
-            $scope.tempratureChartConfig = $scope.createEnvironmentChartConfig('Temperature', 'line', $scope.tempLog, '#2f7ed8');
-            $scope.brightnessChartConfig = $scope.createEnvironmentChartConfig('Brightness', 'line', $scope.brightnessLog, '#910000');
+            $scope.tempratureChartConfig = chartService.createEnvironmentChartConfig('Temperature', 'line', $scope.tempLog, '#2f7ed8', "°C");
+            $scope.brightnessChartConfig = chartService.createEnvironmentChartConfig('Brightness', 'line', $scope.brightnessLog, '#910000');
             
             $scope.environmentLog.$on('child_added', function (child) {
                 var snapshot = child.snapshot.value;
@@ -68,38 +68,9 @@
                 }
             });
         });       
-       
-        $scope.createEnvironmentChartConfig = function(name, chartType, tempLog, color) {
-            return {
-                options: {
-                    chart: {
-                        zoomType: 'x'
-                    }                   
-                },
-                series: [{
-                    name: name,
-                    data: _.map(tempLog, function (logItem) {
-                        return {x: logItem.timestamp, y: parseFloat(logItem.value)};
-                    }),
-                    pointStart: _.first(tempLog).timestamp,
-                    type: chartType,
-                    color: color,
-                    marker: {
-                        enabled: false
-                    }
-                }],
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    type: 'datetime'               
-                },                
-                loading: false
-                }
-            }
     };
 
-app.controller("homeController", ['$scope', '$http', 'travelService', 'automatrService', homeController]);
+app.controller("homeController", ['$scope', '$http', 'travelService', 'automatrService', 'chartService', homeController]);
     
 }(angular.module("ctrlrApp")))
 
