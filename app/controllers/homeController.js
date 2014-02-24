@@ -8,6 +8,8 @@
         $scope.monitoredStop = automatrService.monitoredStop();
         $scope.lightswitchToggle.$bind($scope, 'lightToggle');
         $scope.selectedDeparture = -1;
+        $scope.tempratureChartConfig = { loading: true };
+        $scope.brightnessChartConfig = { loading: true };
 
         $scope.selectDeparture = function($index, $item) {
             $scope.selectedDeparture = $index;
@@ -53,8 +55,8 @@
                 .map(function (item) {
                 return item.brightness;
             }).value();
-            $scope.tempratureChartConfig = $scope.createEnvironmentChartConfig('Temperature', 'spline', $scope.tempLog, '#2f7ed8');
-            $scope.brightnessChartConfig = $scope.createEnvironmentChartConfig('Brightness', 'spline', $scope.brightnessLog, '#910000');
+            $scope.tempratureChartConfig = $scope.createEnvironmentChartConfig('Temperature', 'line', $scope.tempLog, '#2f7ed8');
+            $scope.brightnessChartConfig = $scope.createEnvironmentChartConfig('Brightness', 'line', $scope.brightnessLog, '#910000');
             
             $scope.environmentLog.$on('child_added', function (child) {
                 var snapshot = child.snapshot.value;
@@ -72,7 +74,7 @@
                 options: {
                     chart: {
                         zoomType: 'x'
-                    }
+                    }                   
                 },
                 series: [{
                     name: name,
@@ -81,14 +83,17 @@
                     }),
                     pointStart: _.first(tempLog).timestamp,
                     type: chartType,
-                    color: color
+                    color: color,
+                    marker: {
+                        enabled: false
+                    }
                 }],
                 title: {
-                    text: name + ' log'
+                    text: ''
                 },
                 xAxis: {
                     type: 'datetime'               
-                },
+                },                
                 loading: false
                 }
             }
