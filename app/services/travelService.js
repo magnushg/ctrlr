@@ -44,6 +44,14 @@
                     .value();
             };
 
+        travelFactory.setSubscription = function ($monitoredStop, $item) {
+        	$monitoredStop.$set({stop: {destinationRef: $item.destinationRef, destination: $item.destination, name: $item.name, direction: $item.direction, expectedArrival: $item.expectedArrival}});
+
+        	/*setInterval(function () {
+        		$monitoredStop.$set({stop: {destinationRef: $item.destinationRef, destination: $item.destination, name: $item.name, direction: $item.direction, expectedArrival: $item.expectedArrival}});
+        	}, 10000)*/
+        }
+
         function calculateExpectedTimeString(actualTime) {
             var diffFromNow = moment(actualTime).diff(moment(), 'minutes');
 

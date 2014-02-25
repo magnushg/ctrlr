@@ -13,7 +13,7 @@
 
         $scope.selectDeparture = function($index, $item) {
             $scope.selectedDeparture = $index;
-            $scope.monitoredStop.$set({stop: {destinationRef: $item.destinationRef, destination: $item.destination, name: $item.name, direction: $item.direction}});
+            travelService.setSubscription($scope.monitoredStop, $item);
         };
 
         $scope.lightswitch = function() {            
