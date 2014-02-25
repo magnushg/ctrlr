@@ -44,8 +44,8 @@
                     .value();
             };
 
-        travelFactory.setSubscription = function ($monitoredStop, $item) {
-        	$monitoredStop.$set({stop: {destinationRef: $item.destinationRef, destination: $item.destination, name: $item.name, direction: $item.direction, expectedArrival: $item.expectedArrival}});
+        travelFactory.setSubscription = function ($monitoredStop, $stop, $item) {
+        	$monitoredStop.$set({stop: {stopRef: $stop.id, destinationRef: $item.destinationRef, destination: $item.destination, name: $item.name, direction: $item.direction, expectedArrival: $item.expectedArrival}});
 
         	/*setInterval(function () {
         		$monitoredStop.$set({stop: {destinationRef: $item.destinationRef, destination: $item.destination, name: $item.name, direction: $item.direction, expectedArrival: $item.expectedArrival}});
@@ -59,7 +59,7 @@
                 return 'Nå'
             }
 
-            return diffFromNow > 10 ? moment(actualTime).format() : diffFromNow + ' min';
+            return diffFromNow > 10 ? moment(actualTime).format("HH:mm") : diffFromNow + ' min';
         }
         return travelFactory;
     };
