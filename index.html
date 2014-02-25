@@ -79,7 +79,7 @@
                 </div>
                 <h3>{{departuresHeading}}</h3>
                <div class="list-group">
-                    <a href="#" class="list-group-item" ng-repeat="departure in departures" ng-class="{active: $index==selectedDeparture}" ng-click="selectDeparture($index, departure)">
+                    <a href="javascript:void(0)" class="list-group-item" ng-repeat="departure in departures" ng-class="{active: $index==selectedDeparture}" ng-click="selectDeparture($index, departure)">
                         <span>{{departure.vehicleMode | transportType}}: {{departure.name}} {{departure.destination}}</span><span class="pull-right">{{departure.expectedArrival | date:'HH:mm'}}</span>
                     </a>
                </div>
@@ -108,7 +108,7 @@
     <script src="vendor/moment.min.js"></script>
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="vendor/angular.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCcdZ_uBv9RBTbDAXVdnI-lZ8QvnoyVzk&sensor=true"></script>
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCcdZ_uBv9RBTbDAXVdnI-lZ8QvnoyVzk&sensor=true"></script> -->
     <script src="vendor/ui-bootstrap-0.9.0.min.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
     <script src="vendor/highcharts-ng.min.js"></script>
