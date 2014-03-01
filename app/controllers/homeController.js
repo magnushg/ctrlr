@@ -27,6 +27,7 @@
         };
 
          $scope.stopSelected = function($item) {
+            $scope.selectedDeparture = -1;
             $scope.selectedStop = $item;
             return travelService.getRealtimeData($item.id).then(function(departures) {
                     if(departures.data.length > 0 ) {
@@ -55,8 +56,8 @@
                 .map(function (item) {
                 return item.brightness;
             }).value();
-            $scope.tempratureChartConfig = chartService.createEnvironmentChartConfig('Temperature', 'line', $scope.tempLog, '#2f7ed8', "°C");
-            $scope.brightnessChartConfig = chartService.createEnvironmentChartConfig('Brightness', 'line', $scope.brightnessLog, '#910000');
+            $scope.tempratureChartConfig = chartService.createEnvironmentChartConfig('Temperature', 'spline', $scope.tempLog, '#2f7ed8', "°C");
+            $scope.brightnessChartConfig = chartService.createEnvironmentChartConfig('Brightness', 'spline', $scope.brightnessLog, '#910000');
             
             $scope.environmentLog.$on('child_added', function (child) {
                 var snapshot = child.snapshot.value;
