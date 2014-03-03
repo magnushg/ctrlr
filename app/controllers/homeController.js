@@ -41,7 +41,11 @@
                 });
         };
 
-        $scope.environmentLog.$on('loaded', function(data) {
+        $scope.temprature.$on('loaded', function (data) {
+            $scope.thermometerChartConfig = chartService.createThermometerConfig(data);
+        });
+
+        $scope.environmentLog.$on('loaded', function (data) {
             $scope.tempLog = _.chain(data)
                 .filter(function (item) {
                     return item.temprature !== undefined;
@@ -56,13 +60,14 @@
                 .map(function (item) {
                 return item.brightness;
             }).value();
-            $scope.tempratureChartConfig = chartService.createEnvironmentChartConfig('Temperature', 'spline', $scope.tempLog, '#2f7ed8', "°C");
-            $scope.brightnessChartConfig = chartService.createEnvironmentChartConfig('Brightness', 'spline', $scope.brightnessLog, '#910000');
+            $scope.tempratureChartConfig = chartService.createEnvironmentChartConfig('Temperature', 'spline', $scope.tempLog, '#910000', "°C");
+            $scope.brightnessChartConfig = chartService.createEnvironmentChartConfig('Brightness', 'spline', $scope.brightnessLog, '#2f7ed8');
             
             $scope.environmentLog.$on('child_added', function (child) {
                 var snapshot = child.snapshot.value;
                 if(snapshot.temprature) {
                     $scope.tempratureChartConfig.series[0].data.push({x: snapshot.temprature.timestamp, y: parseFloat(snapshot.temprature.value)});
+                    $scope.thermometerChartConfig.series[0].data = [parseFloat(snapshot.temprature.value)];
                 }
                 if(snapshot.brightness) {
                     $scope.brightnessChartConfig.series[0].data.push({x: snapshot.brightness.timestamp, y: snapshot.brightness.value});

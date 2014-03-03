@@ -21,14 +21,26 @@
 
 .brightness {
 	font-size: 2em;
+	display: block;
+	text-align: center;
 }
 
-.temprature {
+.temperature {
 	font-size: 2em;
+	display: block;
+	text-align: center;
 }
 
 .lightswitch .btn {
     width: 100%
+}
+
+.navbar-brand {
+	font-family: 'Alfa Slab One', cursive;
+}
+
+body {
+	/*font-family: 'Droid Sans', sans-serif !important;*/
 }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
