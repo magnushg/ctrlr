@@ -62,9 +62,10 @@
                 <div class="panel panel-primary lightswitch">
                     <div class="panel-heading"><span class="fa fa-power-off pull-right"></span>Lightswitch</div>
                     <div class="panel-body">
-                        <button type="button" class="btn btn-success" ng-model="lightToggle" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
-                            Lightswitch
-                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success" ng-model="lightToggle" btn-radio="true">On</button>
+                            <button type="button" class="btn btn-danger" ng-model="lightToggle" btn-radio="false">Off</button>
+                        </div>
                     </div>
                 </div>
                 <div class="panel panel-primary">

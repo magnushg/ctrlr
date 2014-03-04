@@ -31,8 +31,12 @@
 	text-align: center;
 }
 
-.lightswitch .btn {
-    width: 100%
+.lightswitch .panel-body .btn-group {
+	width: 100%;
+}
+
+.lightswitch .panel-body .btn-group .btn {
+	width: 50%;
 }
 
 .navbar-brand {

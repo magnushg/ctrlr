@@ -46,12 +46,7 @@
 
         travelFactory.setSubscription = function ($monitoredStop, $stop, $item) {
         	$monitoredStop.$set({stop: {stopRef: $stop.id, destinationRef: $item.destinationRef, destination: $item.destination, name: $item.name, direction: $item.direction, expectedArrival: $item.expectedArrival}});
-
-        	/*setInterval(function () {
-        		$monitoredStop.$set({stop: {destinationRef: $item.destinationRef, destination: $item.destination, name: $item.name, direction: $item.direction, expectedArrival: $item.expectedArrival}});
-        	}, 10000)*/
         }
-
         function calculateExpectedTimeString(actualTime) {
             var diffFromNow = moment(actualTime).diff(moment(), 'minutes');
 

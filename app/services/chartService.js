@@ -50,14 +50,18 @@
 			        plotBackgroundImage: null,
 			        plotBorderWidth: 0,
 			        plotShadow: false
-		    	},
-		    	   pane: {
+		    		},
+		    	    pane: {
 				        startAngle: -150,
 				        endAngle: 150
+	    			},
+	    			legend: {
+	        		margin: 0
 	    			}
-	    		},	    
+	    		},
 			    title: {
-			        text: ''
+			        text: '',
+			        margin: 0
 			    },	       
 			    // the value axis
 			    yAxis: {
@@ -89,7 +93,7 @@
 			        }, {
 			            from: 0,
 			            to: 50,
-			            color: '#ec0117' // red
+			            color: '#a50c26' // red
 			        }]        
 			    },
 			
