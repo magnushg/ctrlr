@@ -54,7 +54,11 @@
                 </div>
                  <div class="panel panel-primary">
                     <div class="panel-heading"><span class="fa fa-sun-o pull-right"></span>Brightness</div>
-                    <div class="panel-body">                        
+                    <div class="panel-body">                       
+                        <div class="userFriendlyBrightness">
+                            <span class="fa {{brightness.value | userFriendlyBrightnessIcon}}"></span>
+                            <span>Room is {{brightness.value | userFriendlyBrightness}}</span>
+                        </div>
                         <span class="brightness">{{brightness.value}} / 1023</span>
                         <pre>last updated: {{brightness.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
                     </div>
@@ -122,5 +126,7 @@
     <script src="app/services/travelService.js"></script>
     <script src="app/services/automatrService.js"></script>
     <script src="app/services/chartService.js"></script>
+    <script src="app/filters/userFriendlyBrightness.js"></script>
+    <script src="app/filters/userFriendlyBrightnessIcon.js"></script>
 </body>
 </html>

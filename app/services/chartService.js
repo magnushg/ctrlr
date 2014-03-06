@@ -72,13 +72,13 @@
 			        minorTickWidth: 1,
 			        minorTickLength: 10,
 			        minorTickPosition: 'inside',
-			        minorTickColor: '#666',
+			        minorTickColor: '#000',
 			
 			        tickPixelInterval: 30,
 			        tickWidth: 2,
 			        tickPosition: 'inside',
 			        tickLength: 10,
-			        tickColor: '#666',
+			        tickColor: '#000',
 			        labels: {
 			            step: 2,
 			            rotation: 'auto'

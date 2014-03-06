@@ -20,7 +20,6 @@
 }
 
 .brightness {
-	font-size: 2em;
 	display: block;
 	text-align: center;
 }
@@ -29,6 +28,12 @@
 	font-size: 2em;
 	display: block;
 	text-align: center;
+}
+
+.userFriendlyBrightness {
+	font-size: 2em;
+	display:block;
+	text-align:center;
 }
 
 .lightswitch .panel-body .btn-group {
