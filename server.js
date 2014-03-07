@@ -19,7 +19,7 @@ app.get('/message', function(req, res) {
 });
 
 app.post('/instaMsg', function (req, res) {
-    var insta = new Firebase("https://automatr.firebaseio.com/monitoredStop".format(firebaseName));
+    var insta = new Firebase("https://automatr.firebaseio.com/monitoredStop");
     insta.update({written: "OK"});
 });
 
