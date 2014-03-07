@@ -18,5 +18,11 @@ app.get('/message', function(req, res) {
 	res.json({message:'ok'});
 });
 
+app.post('/instaMsg', function (req, res) {
+    var insta = new Firebase("https://automatr.firebaseio.com/monitoredStop".format(firebaseName));
+    insta.update({written: "OK"});
+});
+
+
 app.listen(port);
 console.log("Server started on port " + port);
