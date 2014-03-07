@@ -19,8 +19,9 @@ app.get('/message', function(req, res) {
 });
 
 app.post('/instaMsg', function (req, res) {
-    var insta = new Firebase("https://automatr.firebaseio.com/monitoredStop");
+    var insta = new Firebase("https://automatr.firebaseio.com/instatester");
     insta.update({written: "OK"});
+    console.log("Ok");
 });
 
 
