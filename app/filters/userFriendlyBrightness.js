@@ -2,7 +2,7 @@
    var brigthness = function() {
         return function(input) {
             switch (true) {
-            	case (input < 10):
+            	case (input < 15):
             		return "dark";
             	case (input < 200):
             		return "dim";
