@@ -20,7 +20,8 @@
                     color: color,
                     marker: {
                         enabled: false
-                    }
+                    },
+                    turboThreshold: 0
                 }],
                 title: {
                     text: ''
