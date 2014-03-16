@@ -1,5 +1,4 @@
 var express = require("express"),
-    azure = require("azure"),
     Firebase = require('firebase'),
 	app = express(),
 	port = process.env.PORT || 1337;
@@ -17,13 +16,6 @@ app.get('/', function(req, res) {
 app.get('/message', function(req, res) {	
 	res.json({message:'ok'});
 });
-
-app.post('/instaMsg', function (req, res) {
-    var insta = new Firebase("https://automatr.firebaseio.com/instatester");
-    insta.update({written: "OK"});
-    console.log("Ok");
-});
-
 
 app.listen(port);
 console.log("Server started on port " + port);
