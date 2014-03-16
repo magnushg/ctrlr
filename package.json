@@ -1,9 +1,8 @@
 {
-	"name": "MS_dag",
+	"name": "ctrlr",
 	"version": "0.0.1",
 	"dependencies": {
-		"express": "*",
-		"azure": "*",
-		"firebase": "*"
+		"express": "latest",
+		"firebase": "latest"
 	}
 }

@@ -2,7 +2,7 @@
 
     var automatrService = function ($firebase) {
         var automatrFactory = {};
-        var firebaseName = "automatr";
+        var firebaseName = "automatr-test";
 
         var lightswitchRef = new Firebase("https://{0}.firebaseio.com/lightswitch".format(firebaseName));
         var tempratureRef = new Firebase("https://{0}.firebaseio.com/temprature".format(firebaseName));
