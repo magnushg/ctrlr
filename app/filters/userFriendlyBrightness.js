@@ -2,13 +2,13 @@
    var brigthness = function() {
         return function(input) {
             switch (true) {
-            	case (input < 15):
+            	case (input <= 15):
             		return "dark";
-            	case (input < 200):
+            	case (input <= 200):
             		return "dim";
-            	case (input < 500):
+            	case (input <= 500):
             		return "light";
-            	case (input < 800):
+            	case (input <= 800):
             		return "bright";
             	case (input > 800):
             		return "very bright";
