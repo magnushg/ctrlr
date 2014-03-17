@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
   <meta charset="utf-8">
@@ -48,8 +48,8 @@
                     <div class="panel-heading"><span class="fa fa-plus pull-right"></span><span class="fa fa-minus pull-right"></span>Temperature</div>
                     <div class="panel-body">
                         <highchart config="thermometerChartConfig"></highchart>
-                        <span class="temperature">{{temprature.value}}&deg;C</span>
-                        <pre>last updated: {{temprature.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
+                        <span class="temperature">{{temperature.value}}&deg;C</span>
+                        <pre>last updated: {{temperature.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
                     </div>
                 </div>
                  <div class="panel panel-primary">
@@ -95,7 +95,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading"><span class="fa fa-plus pull-right"></span><span class="fa fa-minus pull-right"></span>Temperature log</div>
                     <div class="panel-body">                        
-                        <highchart config="tempratureChartConfig"></highchart>
+                        <highchart config="temperatureChartConfig"></highchart>
                     </div>
                 </div>
                 <div class="panel panel-primary">
