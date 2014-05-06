@@ -9,7 +9,6 @@
   <title>ctrlr</title>
 
   <link rel="stylesheet" href="content/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="content/css/bootstrap-theme.min.css"> -->
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="content/css/app.css">
   <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One|Droid+Sans+Mono|Droid+Sans' rel='stylesheet' type='text/css'>
@@ -68,33 +67,6 @@
                         <pre>last updated: {{proximity.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
                     </div>
                 </div>
-                <div class="panel panel-primary lightswitch">
-                    <div class="panel-heading"><span class="fa fa-power-off pull-right"></span>Lightswitch</div>
-                    <div class="panel-body">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-success" ng-model="lightToggle" btn-radio="true">On</button>
-                            <button type="button" class="btn btn-danger" ng-model="lightToggle" btn-radio="false">Off</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        Subscribe
-                    </div>
-                    <div class="panel-body">
-                        <form class="form-group" role="form" ng-submit="search()">
-                            <pre>Model: {{asyncSelected | json}}</pre>
-                            <input type="text" ng-model="asyncSelected" placeholder="Search for public transportation stop" typeahead="stop as stop.name for stop in getLocation($viewValue) | filter:$viewValue" typeahead-loading="loadingLocations" typeahead-wait-ms="200" typeahead-on-select="stopSelected($item)" class="form-control">
-                            <span style="display:inline" ng-show="loadingLocations" class="fa fa-spinner fa-spin"></span>
-                        </form>
-                    </div>
-                </div>
-                <h3>{{departuresHeading}}</h3>
-               <div class="list-group">
-                    <a href="javascript:void(0)" class="list-group-item" ng-repeat="departure in departures" ng-class="{active: $index==selectedDeparture}" ng-click="selectDeparture($index, departure)">
-                        <span>{{departure.vehicleMode | transportType}}: {{departure.name}} {{departure.destination}}</span><span class="pull-right">{{departure.expectedArrival | date:'HH:mm'}}</span>
-                    </a>
-               </div>
             </div>
              <div class="side-content col-md-6">               
                 <div class="panel panel-primary">
@@ -107,20 +79,26 @@
                     <div class="panel-heading"><span class="fa fa-sun-o pull-right"></span>Brightness log</div>
                     <div class="panel-body">                        
                          <highchart config="brightnessChartConfig"></highchart>
+                    </div>                    
+                </div>
+                <div class="panel panel-primary lightswitch">
+                    <div class="panel-heading"><span class="fa fa-power-off pull-right"></span>Lightswitch</div>
+                    <div class="panel-body">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success" ng-model="lightToggle" btn-radio="true">On</button>
+                            <button type="button" class="btn btn-danger" ng-model="lightToggle" btn-radio="false">Off</button>
+                        </div>
                     </div>
-                </div> 
+                </div>
             </div>           
-        </div>
-      
+        </div>      
     </div> <!-- /container -->
-
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="vendor/bootstrap.min.js"></script>
     <script src="vendor/underscore-min.js"></script>
     <script src="vendor/moment.min.js"></script>
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCcdZ_uBv9RBTbDAXVdnI-lZ8QvnoyVzk&sensor=true"></script> -->
     <script src="vendor/ui-bootstrap-0.9.0.min.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
     <script src="vendor/highcharts-ng.min.js"></script>
