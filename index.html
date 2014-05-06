@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
   <meta charset="utf-8">
@@ -9,12 +9,10 @@
   <title>ctrlr</title>
 
   <link rel="stylesheet" href="content/css/bootstrap.min.css">
-  <link rel="stylesheet" href="content/css/bootstrap-theme.min.css">
+  <!-- <link rel="stylesheet" href="content/css/bootstrap-theme.min.css"> -->
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="content/css/app.css">
   <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One|Droid+Sans+Mono|Droid+Sans' rel='stylesheet' type='text/css'>
-  <script src="vendor/jquery-2.0.3.min.js"></script>
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../../assets/js/html5shiv.js"></script>
@@ -22,7 +20,7 @@
     <![endif]-->
   </head>
 <body ng-app="ctrlrApp" ng-cloak>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -61,6 +59,13 @@
                         </div>
                         <span class="brightness">{{brightness.value}} / 1023</span>
                         <pre>last updated: {{brightness.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
+                    </div>
+                </div>
+                <div class="panel panel-primary proximity">
+                    <div class="panel-heading"><span class="fa fa-eye pull-right"></span>Is someone there?</div>
+                    <div class="panel-body">
+                        {{proximity.value}}
+                        <pre>last updated: {{proximity.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
                     </div>
                 </div>
                 <div class="panel panel-primary lightswitch">
@@ -109,12 +114,12 @@
       
     </div> <!-- /container -->
 
-    <script src="vendor/jquery-2.0.3.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="vendor/bootstrap.min.js"></script>
     <script src="vendor/underscore-min.js"></script>
     <script src="vendor/moment.min.js"></script>
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-    <script src="vendor/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCcdZ_uBv9RBTbDAXVdnI-lZ8QvnoyVzk&sensor=true"></script> -->
     <script src="vendor/ui-bootstrap-0.9.0.min.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>

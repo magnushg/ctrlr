@@ -3,6 +3,7 @@
     var homeController = function($scope, $http, travelService, automatrService, chartService) {       
         $scope.temperature = automatrService.gettemperature();
         $scope.brightness = automatrService.getBrightness();
+        $scope.proximity = automatrService.getProximity();
         $scope.lightswitchToggle = automatrService.lightswitch();
         $scope.environmentLog = automatrService.environmentLog();
         $scope.monitoredStop = automatrService.monitoredStop();
