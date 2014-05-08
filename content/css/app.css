@@ -40,6 +40,12 @@
 	width: 100%;
 }
 
+.label.label-success, .label.label-danger {
+	width: 100%;
+	display: block;
+	margin-bottom: 10px;
+}
+
 .lightswitch .panel-body .btn-group .btn {
 	width: 50%;
 }

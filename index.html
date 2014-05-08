@@ -61,9 +61,10 @@
                     </div>
                 </div>
                 <div class="panel panel-primary proximity">
-                    <div class="panel-heading"><span class="fa fa-eye pull-right"></span>Is someone there?</div>
+                    <div class="panel-heading"><span class="fa fa-eye pull-right"></span>Is anybody there?</div>
                     <div class="panel-body">
-                        {{proximity.value}}
+                        <span class="label label-success animate-show" ng-hide="proximity.value">No one there...</span>
+                        <span class="label label-danger animate-show" ng-show="proximity.value">Someone is there!</span>                   
                         <pre>last updated: {{proximity.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
                     </div>
                 </div>
