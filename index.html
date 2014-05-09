@@ -60,6 +60,15 @@
                         <pre>last updated: {{brightness.timestamp | date: 'dd/MM HH:mm:ss'}}</pre>
                     </div>
                 </div>
+                <div class="panel panel-primary lightswitch">
+                    <div class="panel-heading"><span class="fa fa-power-off pull-right"></span>Lightswitch</div>
+                    <div class="panel-body">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success" ng-model="lightToggle" btn-radio="true">On</button>
+                            <button type="button" class="btn btn-danger" ng-model="lightToggle" btn-radio="false">Off</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel panel-primary proximity">
                     <div class="panel-heading"><span class="fa fa-eye pull-right"></span>Is anybody there?</div>
                     <div class="panel-body">
@@ -75,22 +84,13 @@
                     <div class="panel-body">                        
                         <highchart config="temperatureChartConfig"></highchart>
                     </div>
-                </div>
+                </div>                
                 <div class="panel panel-primary">
                     <div class="panel-heading"><span class="fa fa-sun-o pull-right"></span>Brightness log</div>
                     <div class="panel-body">                        
                          <highchart config="brightnessChartConfig"></highchart>
                     </div>                    
-                </div>
-                <div class="panel panel-primary lightswitch">
-                    <div class="panel-heading"><span class="fa fa-power-off pull-right"></span>Lightswitch</div>
-                    <div class="panel-body">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-success" ng-model="lightToggle" btn-radio="true">On</button>
-                            <button type="button" class="btn btn-danger" ng-model="lightToggle" btn-radio="false">Off</button>
-                        </div>
-                    </div>
-                </div>
+                </div>                
             </div>           
         </div>      
     </div> <!-- /container -->
