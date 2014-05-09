@@ -1,8 +1,8 @@
 (function (app) {
 
-    var automatrService = function ($firebase) {
+    var automatrService = function ($firebase, configService) {
         var automatrFactory = {};
-        var firebaseName = "automatr-test";
+        var firebaseName = configService.baseConfig.firebaseEnvironment;
 
         var lightswitchRef = new Firebase("https://{0}.firebaseio.com/lightswitch".format(firebaseName));
         var temperatureRef = new Firebase("https://{0}.firebaseio.com/temperature".format(firebaseName));
@@ -38,7 +38,7 @@
 		return automatrFactory
     };
 
-    app.factory("automatrService", ["$firebase", automatrService]);
+    app.factory("automatrService", ["$firebase", "configService", automatrService]);
 
 
 }(angular.module("ctrlrApp")));
