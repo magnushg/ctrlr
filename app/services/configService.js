@@ -3,7 +3,7 @@
 		var configFactory = {};
 
 		configFactory.baseConfig = {
-			firebaseEnvironment: "automatr-test"
+			firebaseEnvironment: "automatr"
 		}
 
 		return configFactory;

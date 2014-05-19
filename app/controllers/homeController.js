@@ -5,14 +5,20 @@
         $scope.brightness = automatrService.getBrightness();
         $scope.proximity = automatrService.getProximity();
         $scope.lightswitchToggle = automatrService.lightswitch();
+        $scope.coffeeToggle = automatrService.coffeeToggle();
         $scope.environmentLog = automatrService.environmentLog();
         $scope.lightswitchToggle.$bind($scope, 'lightToggle');
+        $scope.coffeeToggle.$bind($scope, 'coffeeToggler');
         $scope.temperatureChartConfig = { loading: true };
         $scope.brightnessChartConfig = { loading: true };
 
         $scope.lightswitch = function() {            
             $scope.lightToggle = !$scope.lightToggle;
         };
+
+        $scope.coffee = function() {
+            $scope.coffeeToggler = !$scope.coffeeToggler;
+        }
 
         $scope.temperature.$on('loaded', function (data) {
             $scope.thermometerChartConfig = chartService.createThermometerConfig(data);

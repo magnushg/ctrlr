@@ -5,6 +5,7 @@
         var firebaseName = configService.baseConfig.firebaseEnvironment;
 
         var lightswitchRef = new Firebase("https://{0}.firebaseio.com/lightswitch".format(firebaseName));
+        var coffeeRef = new Firebase("https://{0}.firebaseio.com/coffee".format(firebaseName));
         var temperatureRef = new Firebase("https://{0}.firebaseio.com/temperature".format(firebaseName));
         var proximityRef = new Firebase("https://{0}.firebaseio.com/proximity".format(firebaseName));
         var brightnessRef = new Firebase("https://{0}.firebaseio.com/brightness".format(firebaseName));
@@ -25,6 +26,10 @@
 
         automatrFactory.lightswitch = function () {
             return $firebase(lightswitchRef);
+        };
+
+        automatrFactory.coffeeToggle = function () {
+            return $firebase(coffeeRef);
         };
 
         automatrFactory.environmentLog = function () {
